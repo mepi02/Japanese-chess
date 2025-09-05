@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # 画像読み込み
-image = cv2.imread("test2.png")
+image = cv2.imread("Image/testImage_1.png")
 image_gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
 # ノイズ軽減
@@ -28,7 +28,7 @@ image_blank = np.ones_like(image) * 255
 
 for cnt in contours:
     area = cv2.contourArea(cnt)
-    if area < 5000 or area>20000:  # 小さい輪郭を除外
+    if area < 3000 or area>20000:  # 小さい輪郭を除外
         cv2.drawContours(image_result, [cnt], -1, (255,0,0), 2),
         continue
 
@@ -43,7 +43,7 @@ for cnt in contours:
     
 
 # 結果保存
-cv2.imwrite('detected_squares.png', image_result)
+cv2.imwrite('Image/frame.png', image_result)
 
 # 結果出力
 print(f"検出された四角形の数: {square_count}")
