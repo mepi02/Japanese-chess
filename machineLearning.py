@@ -59,10 +59,11 @@ y_encoded = le.fit_transform(y)
 X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42, stratify=y_encoded)
 
 
-# SVM学習
-clf = svm.SVC(kernel='linear')
+
+# SVM学習（信頼度出力のためprobability=True）
+clf = svm.SVC(kernel='rbf', C=10, probability=True)
 clf.fit(X_train, y_train)
-dump(clf, 'shogi_model_.joblib')
+dump(clf, 'shogi_model.joblib')
 
 
 # 評価
